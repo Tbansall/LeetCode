@@ -1,0 +1,46 @@
+class Solution {
+    public int minDominoRotations(int[] tops, int[] bottoms) {
+        int num1 = tops[0], num2 = bottoms[0];
+        int c1 = 0,c2 = 0,c3 = 0,c4 = 0;
+        //for counting swaps needed for rotataion c1 for num1,c2 for num1,c3 for num2,c4 for num2
+        for(int i=0;i<tops.length;i++)
+        {
+            if( c1 != Integer.MAX_VALUE){
+                if(tops[i]==num1);
+                else if(bottoms[i]==num1)
+                c1++;
+                else
+                c1 = Integer.MAX_VALUE;
+            }
+            if( c2 != Integer.MAX_VALUE){
+                if(bottoms[i]==num1);
+                else if(tops[i]==num1)
+                c2++;
+                else
+                c2 = Integer.MAX_VALUE;
+            }
+            if( c3 != Integer.MAX_VALUE){
+                if(bottoms[i]==num2);
+                else if(tops[i]==num2)
+                c3++;
+                else
+                c3 = Integer.MAX_VALUE;
+            }
+            if( c4 != Integer.MAX_VALUE){
+                if(tops[i]==num2);
+                else if(bottoms[i]==num2)
+                c4++;
+                else
+                c4 = Integer.MAX_VALUE;
+            }
+        }
+        
+        
+        int min = Math.min(Math.min(c1,c2),Math.min(c3,c4));
+        if(min == Integer.MAX_VALUE)
+            return -1;
+        else
+            return min;
+        
+    }
+}
