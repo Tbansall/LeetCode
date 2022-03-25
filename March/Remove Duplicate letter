@@ -1,0 +1,58 @@
+class Solution {
+    public String removeDuplicateLetters(String s) {
+        boolean freq[] = new boolean[26];
+        Stack<Character> st = new Stack<>();
+        String result = "";
+        st.push(s.charAt(0));
+        int val[] = new int[26];
+        
+        for(int i=0;i<s.length();i++)
+        {
+            val[s.charAt(i)-97]++;
+        }
+        val[s.charAt(0)-97]--;
+        freq[s.charAt(0)-97]=true;
+        for(int i=1;i<s.length();i++)
+        {
+            if(!st.isEmpty() && s.charAt(i)> st.peek() && !freq[s.charAt(i)-97])
+            {
+                st.push(s.charAt(i));
+                freq[s.charAt(i)-97] = true;
+                val[s.charAt(i)-97]--;
+            }
+            else
+            {
+                if(!st.isEmpty()){
+                char value = st.peek();
+                while(!st.isEmpty()&& s.charAt(i)<= st.peek() && val[value-97]>0 && !freq[s.charAt(i)-97]){
+                
+                freq[value-97]= false;
+                st.pop();
+                    if(!st.isEmpty())
+                    value = st.peek();
+                }
+                }
+                if(!freq[s.charAt(i)-97]){
+                st.push(s.charAt(i));
+                val[s.charAt(i)-97]--;
+                freq[s.charAt(i)-97]=true;
+                }
+                else
+                  val[s.charAt(i)-97]--;
+                
+            }
+        }
+        char ch[] = new char[st.size()];
+        int s1 = st.size()-1;
+        while(!st.isEmpty())
+        {
+            ch[s1] = st.pop();
+            
+            s1--;
+        }
+       
+        return String.valueOf(ch);
+        
+        
+    }
+}
