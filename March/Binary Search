@@ -1,0 +1,44 @@
+Requirement : Array should be sorted in ascending order
+In this Algorithm basically what we are doing is :
+
+we're finding a middle element then comparing it to target if it equals we're returning it
+If target is greater we move to the greater side by assigning start = mid+1
+if target is smaller we move to the lower side by assigning last = mid-1
+
+    public int search(int[] nums, int target) {
+        int start=0,end = nums.length-1;
+        while(start<=end)
+        {
+            int mid = (start+end)/2;
+            if(target==nums[mid])
+                return mid;
+            else if(target>nums[mid])
+                start = mid+1;
+            else
+                end = mid-1;
+            
+        }
+        return -1;
+    }
+}
+
+Let's dry run this code for nums = [-1,0,3,5,9,12], target = 9 :
+
+=> for this start = 0 ,end = 5
+while(0<=5)
+{
+	mid = (0+5)/2; //which is 2
+	if(nums[2] == 9) // nums[2] = 3 , target = 9 but this condition is false it'll go to next statement
+	else(9>3)
+	start = 3
+	else
+	end = 1; // It'll not go to this statement
+}
+
+=>  now start becomes 3 and end is 5
+while(4<=5)
+{
+	mid = (3+5)/2 // which is 4
+	if( nums[4] == 9) // nums[4] = 9 this condition is true
+	return 4;	
+}
